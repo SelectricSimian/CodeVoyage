@@ -1,5 +1,3 @@
--- STRICT VERSION
-
 module Interpreter where
 
 --import Lazy exposing (Lazy, lazy, force)
@@ -277,65 +275,6 @@ typeOf val =
     FunVal _ -> Just "Fun"
     StructVal _ _ -> Just "Struct"
 
-
---applyPrim : (History, Prim) -> List TrackedVal -> TrackedVal
---applyPrim (primHistory, prim) args =
---  let
---    history = PrimHistory
---        { prim = { history = primHistory, result = AtomVal (PrimAtom prim) }
---        , args = args
---        }
-
---    argResults = List.map .result args
-
---    result =
---      case (prim, argResults) of
-        
---        -- Arithmetic
-
---        (AddPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            AtomVal (NumAtom (a + b))
-
---        (SubPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            AtomVal (NumAtom (a - b))
-
---        (MulPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            AtomVal (NumAtom (a * b))
-
---        (DivPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            AtomVal (NumAtom (a / b))
-
---        -- Comparison
-
---        (EqualPrim, [val1, val2]) ->
---            valEqual val1 val2
---              |> Maybe.map boolToSym
---              |> Maybe.withDefault (AtomVal ErrorAtom)
-
---        (LessPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            boolToSym (a < b)
-
---        -- implementing ordering for symbols is questionable
---        (LessPrim, [AtomVal (SymAtom a), AtomVal (SymAtom b)]) ->
---            boolToSym (a < b)
-
---        (LessEqualPrim, [AtomVal (NumAtom a), AtomVal (NumAtom b)]) ->
---            boolToSym (a <= b)
-
---        -- once again, implementing ordering for symbols is questionable
---        (LessEqualPrim, [AtomVal (SymAtom a), AtomVal (SymAtom b)]) ->
---            boolToSym (a <= b)
-
---        -- Utilities
-
---        (TypeOfPrim, [val]) ->
---            typeOf val
---              |> Maybe.map (AtomVal << SymAtom)
---              |> Maybe.withDefault (AtomVal ErrorAtom)
-
---        _ -> AtomVal ErrorAtom
---  in
---    { history = history, result = result }
 
 -- This could be written in a more concise way in which every erroneous case is
 -- handled by a single wildcard pattern at the very end of a single case

@@ -1,67 +1,3 @@
---import Lazy exposing (Lazy, force, lazy)
-
---type alias Var = String
-
---type alias Num = Float
---type alias Sym = String
-
---type Pattern
---    = WildcardPat
---    | VarWildcardPat Var
---    | SymPat Sym
---    | StructPat Sym (List Pat) 
-
---type Expr
---    = ErrorExpr
---    | VarExpr Var
---    | NumExpr Num
---    | SymExpr String
---    | AppExpr Expr (List Expr)
---    | FuncExpr (List Var) Expr
---    --| CaseExpr (List (Pattern, Expr))
-
---type Function
---    = NamedFunc Var
---    | AnonymousFunc (List Var) Expr
-
---type Primitive
---    = AddPrim
---    | SubPrim
---    | MulPrim
---    | DivPrim
---    | EqPrim
---    | TypePrim
-
---type Value
---    = NumValue Num
---    | SymValue Sym
---    | StructValue Sym (List TrackedValue)
---    | FuncValue Function
---    | ErrorValue
---    | PrimitiveValue Primitive
-
---type AppExpansion = AppNotExpanded | ExpandedShallow | ExpandedDeep
-----type CaseExpansion = CaseNotExpanded | ExpandedBranch | Expanded 
-
---type TrackedValue
---    = TrackedPrimitiveApp
---        { primitive : Primitive
---        , args : List TrackedValue
---        , result : Value
---        , expanded : Bool
---        }
---    | TrackedApp
---        { func : Function
---        , args : List TrackedValue
---        , implementation : TrackedValue
---        , expanded : AppExpansion
---        }
---    --| TrackedCase
---    --    { subject : TrackedValue
---    --    , cases : List ()
---    --    }
---    | TrackedLit Value
-
 import Html exposing (Html, div, span, em, a, text, input, br)
 import Html.Events exposing (onClick, on, targetValue)
 import Html.Attributes exposing (placeholder, style)
@@ -74,11 +10,6 @@ import Illuminator as Illum
 import Utils
 
 import Dict exposing (Dict)
-
---main = text <| toString <| eval Dict.empty (AppExpr
---    (LitExpr (PrimAtom AddPrim))
---    [(LitExpr  (NumAtom 1))
---    ,(LitExpr  (NumAtom 2))])
 
 
 globals = Dict.fromList
@@ -154,14 +85,6 @@ view address model =
         , inputStyle
         ]
         []
-    --, div [ outputStyle ]
-    --    [ span [ outputLabelStyle ] [ text "Tokenized: " ]
-    --    , text (toString model.tokenized)
-    --    ]
-      {- , output "Parsed" model.parsed
-      , output "Expressed" model.expressed
-      , output "Evaluated" model.evaluated
-      , output "Result" model.result -}
       , model.annotated
         |> Maybe.map
             (Illum.viewList
