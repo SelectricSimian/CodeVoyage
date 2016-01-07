@@ -1,7 +1,7 @@
 {
     "version": "1.0.0",
     "summary": "Algorithm Exploration Platform",
-    "repository": "https://github.com/SelectricSimian/CodeVoyage.git",
+    "repository": "https://github.com/SelectricSimian/code-voyage.git",
     "license": "MIT",
     "source-directories": [
         "."
