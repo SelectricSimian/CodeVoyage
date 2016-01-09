@@ -6,7 +6,7 @@ import Set exposing (Set)
 
 {-
     Abbreviations
-    (As a style convention, these abbreviations should *always* be used, and should there full versions always avoided)
+    (As a style convention, these abbreviations should *always* be used, and their full versions always avoided)
 
     Num  <-> Number
     Sym  <-> Symbol
